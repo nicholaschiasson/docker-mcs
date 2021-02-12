@@ -44,6 +44,7 @@ jobs:
           echo IMAGE_ID=${IMAGE_ID}
           echo VERSION=${VERSION}
           IMAGE_BASE=${{ matrix.imgbase }}
+          docker tag image ${IMAGE_ID}:latest
           docker tag image ${IMAGE_ID}:${IMAGE_BASE/:/-}-${{ matrix.minecraft }}-${VERSION}
           docker push ${IMAGE_ID}
       - name: Log into GitHub registry
@@ -56,5 +57,6 @@ jobs:
           echo IMAGE_ID=${IMAGE_ID}
           echo VERSION=${VERSION}
           IMAGE_BASE=${{ matrix.imgbase }}
+          docker tag image ${IMAGE_ID}:latest
           docker tag image ${IMAGE_ID}:${IMAGE_BASE/:/-}-${{ matrix.minecraft }}-${VERSION}
           docker push ${IMAGE_ID}
