@@ -15,4 +15,4 @@ WORKDIR /root
 RUN echo "eula=true" > eula.txt
 
 ENTRYPOINT cp /etc/mcs/server.properties server.properties \
-	&& java -Xmx1024M -Xms1024M -jar /usr/local/share/java/mcs --nogui --universe /run/mcs
+	&& java -Xmx4G -Xms512M -jar /usr/local/share/java/mcs --nogui --universe /run/mcs
