@@ -46,7 +46,7 @@ jobs:
           IMAGE_BASE=${{ matrix.imgbase }}
           docker tag image ${IMAGE_ID}:latest
           docker tag image ${IMAGE_ID}:${IMAGE_BASE/:/-}-${{ matrix.minecraft }}-${VERSION}
-          docker push ${IMAGE_ID}
+          docker push --all-tags ${IMAGE_ID}
       - name: Log into GitHub registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
       - name: Push image GitHub registry
@@ -59,4 +59,4 @@ jobs:
           IMAGE_BASE=${{ matrix.imgbase }}
           docker tag image ${IMAGE_ID}:latest
           docker tag image ${IMAGE_ID}:${IMAGE_BASE/:/-}-${{ matrix.minecraft }}-${VERSION}
-          docker push ${IMAGE_ID}
+          docker push --all-tags ${IMAGE_ID}
