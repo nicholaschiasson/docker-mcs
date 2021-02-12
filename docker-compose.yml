@@ -1,7 +1,15 @@
 version: "3.9"
 services:
   mcs:
-    build: .
+    ## Use if building image locally
+    build:
+      args:
+        IMAGE_BASE: alpine:3
+        MINECRAFT_VERSION: 1b557e7b033b583cd9f66746b7a9ab1ec1673ced
+      context: .
+      dockerfile: Dockerfile.alpine
+    ## Use if pulling the image from docker hub
+    # image: nicholaschiasson/mcs:latest
     ports:
       - "25565:25565"
     volumes:

@@ -1,0 +1,22 @@
+ARG IMAGE_BASE
+
+FROM ${IMAGE_BASE}
+
+ARG MINECRAFT_VERSION
+
+RUN apk update \
+	&& apk add \
+		bash \
+		curl \
+		openjdk8
+
+WORKDIR /usr/local/share/java
+
+RUN curl -L https://launcher.mojang.com/v1/objects/${MINECRAFT_VERSION}/server.jar -o mcs
+
+WORKDIR /root
+
+RUN echo "eula=true" > eula.txt
+
+ENTRYPOINT if test -f /etc/mcs/server.properties; then cp /etc/mcs/server.properties server.properties; fi; \
+	java -Xmx4G -Xms512M -jar /usr/local/share/java/mcs --nogui --universe /run/mcs
