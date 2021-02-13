@@ -111,6 +111,9 @@ version: "3.9"
 services:
   mcs:
     image: nicholaschiasson/mcs:alpine-3-1.16.5-0.1.0
+    environment:
+      JAVA_INITIAL_MEMORY_ALLOCATION_POOL: 512M
+      JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL: 4G
     ports:
       - "25565:25565"
     volumes:
