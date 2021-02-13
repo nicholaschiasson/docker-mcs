@@ -13,7 +13,7 @@ file like the following.
 version: "3.9"
 services:
   mcs:
-    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.1.0
+    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.2.0
     ports:
       - "25565:25565"
 ```
@@ -34,7 +34,7 @@ four segments of the following format:
 
 Thus, for the above example, we are running the container on a distribution of
 `alpine` linux, version `3`, with Minecraft server version `1.16.5`, and on release
-`0.1.0` of this project.
+`0.2.0` of this project.
 
 Refer to [the docker hub page](https://hub.docker.com/repository/docker/nicholaschiasson/mcs/tags)
 to view supported versions of minecraft.
@@ -53,7 +53,7 @@ You inject your own `server.properties` by mounting the file in your
 version: "3.9"
 services:
   mcs:
-    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.1.0
+    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.2.0
     ports:
       - "25565:25565"
     volumes:
@@ -86,7 +86,7 @@ values for `JAVA_INITIAL_MEMORY_ALLOCATION_POOL` and
 version: "3.9"
 services:
   mcs:
-    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.1.0
+    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.2.0
     environment:
       JAVA_INITIAL_MEMORY_ALLOCATION_POOL: 512M
       JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL: 4G
@@ -110,7 +110,7 @@ file and then update the `volumes` section of `docker-compose.yml` like so:
 version: "3.9"
 services:
   mcs:
-    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.1.0
+    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.2.0
     environment:
       JAVA_INITIAL_MEMORY_ALLOCATION_POOL: 512M
       JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL: 4G
@@ -159,3 +159,4 @@ docker-compose exec mcs bash
 ```bash
 docker-compose logs -f
 ```
+
