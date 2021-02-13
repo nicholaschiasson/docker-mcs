@@ -10,6 +10,9 @@ services:
       dockerfile: Dockerfile.alpine
     ## Use if pulling the image from docker hub
     # image: nicholaschiasson/mcs:latest
+    environment:
+      JAVA_INITIAL_MEMORY_ALLOCATION_POOL: 512M
+      JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL: 4G
     ports:
       - "25565:25565"
     volumes:

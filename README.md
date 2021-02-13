@@ -39,7 +39,12 @@ Thus, for the above example, we are running the container on a distribution of
 Refer to [the docker hub page](https://hub.docker.com/repository/docker/nicholaschiasson/mcs/tags)
 to view supported versions of minecraft.
 
+If you would like support for more Minecraft versions or more platforms for the
+image, please open an issue or pull request.
+
 ### Configuration
+
+#### Server properties
 
 You inject your own `server.properties` by mounting the file in your
 `docker-compose.yml` file.
@@ -65,6 +70,31 @@ Minecraft server tries to overwrite the `server.properties` file that it reads,
 but making our mounted file read only will not impact this since the container
 tries copying `/etc/mcs/server.properties` to `/root/server.properties` before
 launching the server, and it is the latter file which is read into the server.
+
+#### Java memory allocation
+
+By default, the container will run the JVM with an initial memory allocation
+pool of `1024M` and a maximum memory allocation pool of `1024M`.
+
+These values can be overriden via environment variables.
+
+In your `docker-compose.yml` file, add an `environment` section to update the
+values for `JAVA_INITIAL_MEMORY_ALLOCATION_POOL` and
+`JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL`.
+
+```yaml
+version: "3.9"
+services:
+  mcs:
+    image: nicholaschiasson/mcs:alpine-3-1.16.5-0.1.0
+    environment:
+      JAVA_INITIAL_MEMORY_ALLOCATION_POOL: 512M
+      JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL: 4G
+    ports:
+      - "25565:25565"
+    volumes:
+      - ./server.properties:/etc/mcs/server.properties:ro
+```
 
 ### Persistent data
 

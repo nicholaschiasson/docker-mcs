@@ -19,5 +19,8 @@ WORKDIR /root
 RUN mkdir -p /run/mcs
 RUN echo "eula=true" > eula.txt
 
+ENV JAVA_INITIAL_MEMORY_ALLOCATION_POOL=1024M
+ENV JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL=1024M
+
 ENTRYPOINT if test -f /etc/mcs/server.properties; then cp /etc/mcs/server.properties server.properties; fi; \
-	java -Xmx4G -Xms512M -jar /usr/local/share/java/mcs --nogui --universe /run/mcs
+	java -Xms${JAVA_INITIAL_MEMORY_ALLOCATION_POOL} -Xmx${JAVA_MAXIMUM_MEMORY_ALLOCATION_POOL} -jar /usr/local/share/java/mcs --nogui --universe /run/mcs
