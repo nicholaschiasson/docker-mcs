@@ -8,7 +8,7 @@ RUN apk update \
 	&& apk add \
 		bash \
 		curl \
-		openjdk8
+		openjdk8-jre
 
 WORKDIR /usr/local/share/java
 
